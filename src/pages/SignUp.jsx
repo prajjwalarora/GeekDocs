@@ -1,6 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SingUp = () => {
+  const navigate = useNavigate();
+  const [tempData, setTempData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cPassword: "",
+  });
+
+  const [signUpData, setSignUpData] = useState();
+
+  const inputHandler = (e) => {
+    const tarele = e.target.name;
+    setTempData((prev) => {
+      return { ...prev, [tarele]: e.target.value };
+    });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const formData = Object.fromEntries(new FormData(event.target).entries());
+
+    delete formData.cPassword;
+    console.log(formData);
+    setSignUpData(formData);
+  };
+
+  useEffect(() => {
+    if (signUpData) {
+      axios
+        .post(
+          "http://10.1.105.126:8080/api/v1/auth/signup",
+          JSON.stringify(signUpData),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          navigate("/docs");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [signUpData]);
+
   return (
     <div class="flex min-h-full items-center justify-center py-12 m-24 px-4 sm:px-6 lg:px-8">
       <div class="w-full max-w-md  p-12 rounded-2xl space-y-8 border border-red-200 ">
@@ -10,8 +61,7 @@ const SingUp = () => {
             Sign Up to your account
           </h2>
         </div>
-        <form class="mt-8 space-y-6 " action="#" method="POST">
-          <input type="hidden" name="remember" value="true" />
+        <form class="mt-8 space-y-6 " onSubmit={submitHandler}>
           <div class="-space-y-px rounded-md ">
             <div class="p-2">
               <label for="Name" class="sr-only">
@@ -19,12 +69,13 @@ const SingUp = () => {
               </label>
               <input
                 id="Name"
-                name="Name"
+                name="name"
                 type="Name"
                 autocomplete="current-Name"
                 required
                 class="relative block w-full appearance-none rounded-md border border-red-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-red-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Name"
+                onChange={inputHandler}
               />
             </div>
             <div class="p-2">
