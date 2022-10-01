@@ -64,7 +64,6 @@ exports.get = async (req, res) => {
 
 exports.saveDoc = async (roomId, data) => {
   try {
-    console.log(roomId, data);
     await Doc.findOneAndUpdate({ docId: roomId }, { data });
   } catch (error) {
     console.log(error);

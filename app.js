@@ -6,7 +6,7 @@ const authRouter = require("./routes/authRoutes");
 const docRouter = require("./routes/docRoutes");
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "http://10.1.105.126:3000" }));
 
 app.use(express.json());
 app.use(morgan("dev"));
