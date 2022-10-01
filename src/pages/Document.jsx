@@ -102,7 +102,7 @@ const Document = () => {
                   Add New Files
                 </h5>
               </a>
-              <p class=" text-xs text-gray-400 dark:text-gray-400">5 files</p>
+              <p class=" text-xs text-gray-400 dark:text-gray-400"></p>
             </div>
           </div>
           {data && data.map((d) => <DocCard key={`${d._id}`} d={d} />)}

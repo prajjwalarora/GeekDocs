@@ -16,7 +16,7 @@ const docCard = ({ d }) => {
         <h5 class="mb-2 text-md font-semibold tracking-tight text-gray-700 ">
           {d["title"]}
         </h5>
-        <p class=" text-xs text-gray-400 dark:text-gray-400">5 files</p>
+        <p class=" text-xs text-gray-400 dark:text-gray-400"></p>
       </div>
     </Link>
   );
