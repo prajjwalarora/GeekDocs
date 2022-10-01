@@ -4,7 +4,7 @@ import EditorBox from "./EditorBox/EditorBox";
 import EditorHeader from "./EditorHeader/EditorHeader";
 import EditorWidgets from "./EditorWidgets/EditorWidgets";
 
-const EditorElement = () => {
+const EditorElement = ({ socket }) => {
   function boldHandler() {
     console.log("Bold Clicked");
   }
@@ -22,7 +22,7 @@ const EditorElement = () => {
         italicHandler={italicHandler}
         underlineHandler={underlineHandler}
       />
-      <EditorBox />
+      <EditorBox socket={socket} />
     </div>
   );
 };
