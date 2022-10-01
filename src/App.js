@@ -1,8 +1,6 @@
 import React from "react";
 import EditorElement from "./components/Editor/EditorElement";
-import Navbar from "./components/navbar";
-import TextEditor from "./components/TextEditor";
-import DocumentPage from "./pages/DocumentPage";
+import NavBar from "./components/Navbar/navbar";
 
 const App = () => {
   return (
@@ -10,7 +8,7 @@ const App = () => {
       <div className="mainContent">
         <div className="nav-wrapper bg-white w-100vh drop-shadow-lg">
           <div className="w-[80%] m-auto h-14 bg-white">
-            <Navbar />
+            <NavBar />
           </div>
         </div>
 
@@ -21,9 +19,6 @@ const App = () => {
             </div>
           </div>
         </div>
-        <Navbar />
-        <DocumentPage />
-        <TextEditor />
       </div>
     </div>
   );
