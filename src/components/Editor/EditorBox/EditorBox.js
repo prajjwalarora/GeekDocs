@@ -32,26 +32,28 @@ const EditorBox = ({ socket }) => {
   }, [socket, editor]);
   useEffect(() => {
     const token = localStorage.getItem("token");
-    axios
-      .get(
-        `http://10.1.105.126:8080/api/v1/doc/${searchParams.get("docId")}`,
+    if (searchParams.get("docId") && token) {
+      axios
+        .get(
+          `http://10.1.105.126:8080/api/v1/doc/${searchParams.get("docId")}`,
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        console.log(JSON.parse(res.data.data.data));
-        editor.children = JSON.parse(res.data.data.data);
-        editor.onChange();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          console.log(JSON.parse(res.data.data.data));
+          editor.children = JSON.parse(res.data.data.data);
+          editor.onChange();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const renderElement = useCallback((props) => {
@@ -129,9 +131,7 @@ const EditorBox = ({ socket }) => {
   }
   return (
     <>
-      <div>
-        <div>{JSON.stringify(users)}</div>
-      </div>
+      <div></div>
       <EditorWidgets
         boldHandler={boldHandler}
         italicHandler={italicHandler}

@@ -35,6 +35,9 @@ const Document = () => {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      return navigate("/");
+    }
     const token = localStorage.getItem("token");
     axios
       .get(`http://10.1.105.126:8080/api/v1/doc/`, {

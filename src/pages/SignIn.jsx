@@ -13,6 +13,9 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      return navigate("/docs");
+    }
     if (signInData) {
       axios
         .post(

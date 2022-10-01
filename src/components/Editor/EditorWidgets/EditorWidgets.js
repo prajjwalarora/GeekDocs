@@ -41,6 +41,9 @@ const EditorWidgets = ({ boldHandler, italicHandler, underlineHandler }) => {
           }}
         >
           <AddPhotoAlternateIcon fontSize="medium" />
+          <span className="text-[10px] bg-[#BD3738] text-white px-2 rounded-full py-1 ml-1 bg-opacity-70">
+            Coming Soon
+          </span>
         </div>
         <div
           className="icon-wrapper flex items-center mr-12 cursor-pointer"
@@ -49,11 +52,12 @@ const EditorWidgets = ({ boldHandler, italicHandler, underlineHandler }) => {
           }}
         >
           <TableViewIcon fontSize="medium" />
+          <span className="text-[10px] bg-[#BD3738] text-white px-2 rounded-full py-1 ml-1 bg-opacity-70">
+            Coming Soon
+          </span>
         </div>
       </div>
-      <div className="widget-right">
-        <Button variant="contained">Save</Button>
-      </div>
+      <div className="widget-right"></div>
     </div>
   );
 };

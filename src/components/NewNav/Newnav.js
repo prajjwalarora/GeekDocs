@@ -1,8 +1,14 @@
 import React from "react";
 import SignIn from "../Buttons/SignIn";
 import SignUp from "../Buttons/SignUp";
+import { useNavigate } from "react-router-dom";
 
-const Newnav = ({ isDoc }) => {
+const Newnav = ({ isDoc, isLogin }) => {
+  const navigate = useNavigate();
+  const logOutHandler = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <div>
       <nav class="navbar bg-white px-2 shadow">
@@ -27,6 +33,14 @@ const Newnav = ({ isDoc }) => {
             </div>
             {!isDoc && <SignUp />}
             {!isDoc && <SignIn />}
+            {isDoc && (
+              <button
+                className="bg-[#BD3738] text-white px-4 py-2 rounded-md mr-8"
+                onClick={logOutHandler}
+              >
+                Log Out
+              </button>
+            )}
           </ul>
         </div>
       </nav>
