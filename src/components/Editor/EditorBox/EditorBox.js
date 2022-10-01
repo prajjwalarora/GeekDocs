@@ -11,6 +11,7 @@ const EditorBox = ({ socket }) => {
   const [editor] = useState(() => withReact(createEditor()));
   const [initialValue, setInitialValue] = useState([]);
   const [searchParams] = useSearchParams();
+  const [users, setUsers] = useState([]);
   const userId = useMemo(() => {
     localStorage.getItem("userId");
   });
@@ -22,6 +23,10 @@ const EditorBox = ({ socket }) => {
         Transforms.select(editor, { path: [0, 0], offset: 3 });
         editor.children = parsedData;
         editor.onChange();
+      });
+      socket.on("user-connected", (userId) => {
+        console.log(userId);
+        setUsers((prev) => [...prev, userId]);
       });
     }
   }, [socket, editor]);
@@ -124,6 +129,9 @@ const EditorBox = ({ socket }) => {
   }
   return (
     <>
+      <div>
+        <div>{JSON.stringify(users)}</div>
+      </div>
       <EditorWidgets
         boldHandler={boldHandler}
         italicHandler={italicHandler}

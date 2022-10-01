@@ -9,7 +9,7 @@ const DocumentPage = () => {
   const [socket, setSocket] = useState(null);
   const [searchParams] = useSearchParams();
   useEffect(() => {
-    const socketConnection = io("ws://localhost:8081");
+    const socketConnection = io("ws://10.1.105.126:8081");
     setSocket(socketConnection);
   }, []);
   useEffect(() => {
