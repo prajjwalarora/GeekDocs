@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Newnav from "../components/NewNav/Newnav";
 import AddIcon from "@mui/icons-material/Add";
 
 const Document = () => {
+  const [data, setData] = useState([]);
+  useRef(() => {
+    const getData = async () => {
+      const response = await fetch("");
+    };
+  }, [setData]);
   return (
     <div>
       <Newnav isDoc={true} />

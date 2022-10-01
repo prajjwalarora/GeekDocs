@@ -118,7 +118,11 @@ const EditorBox = ({ socket }) => {
                 const content = JSON.stringify(value);
                 console.log(value);
                 localStorage.setItem("content", content);
-                socket.emit("input-by-user", content);
+                socket.emit(
+                  "input-by-user",
+                  content,
+                  "6337e050de39fc7d9b8e008b"
+                );
               }
             }}
           >
