@@ -20,6 +20,7 @@ const Document = () => {
     boxShadow: 24,
     p: 4,
   };
+  const [data, setData] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,29 +37,49 @@ const Document = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .post(
-        `http://10.1.105.126:8080/api/v1/doc/create`,
-        JSON.stringify(modal),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      )
+      .get(`http://10.1.105.126:8080/api/v1/doc/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
       .then((res) => {
-        navigate(`/editor/?docId=${res.data.data.docId}`);
+        setData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (modal) {
+      axios
+        .post(
+          `http://10.1.105.126:8080/api/v1/doc/create`,
+          JSON.stringify(modal),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          navigate(`/editor/?docId=${res.data.data.docId}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [modal]);
 
   return (
     <div>
       <Newnav isDoc={true} />
-      <div className="content-wrapper w-[95%] m-auto">
+      <div className="content-wrapper w-[95%] m-auto cursor-pointer">
         <div class="  grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-4 mt-8">
           <div>
             <div
@@ -81,7 +102,7 @@ const Document = () => {
               <p class=" text-xs text-gray-400 dark:text-gray-400">5 files</p>
             </div>
           </div>
-          <DocCard />
+          {data && data.map((d) => <DocCard key={`${d._id}`} d={d} />)}
         </div>
       </div>
       <Modal

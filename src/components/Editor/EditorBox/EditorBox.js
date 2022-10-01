@@ -39,6 +39,7 @@ const EditorBox = ({ socket }) => {
         }
       )
       .then((res) => {
+        console.log(res);
         console.log(JSON.parse(res.data.data.data));
         editor.children = JSON.parse(res.data.data.data);
         editor.onChange();
