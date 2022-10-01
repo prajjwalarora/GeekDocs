@@ -1,6 +1,8 @@
 import React from "react";
-import Navbar from "./components/Navbar/navbar";
 import EditorElement from "./components/Editor/EditorElement";
+import Navbar from "./components/navbar";
+import TextEditor from "./components/TextEditor";
+import DocumentPage from "./pages/DocumentPage";
 
 const App = () => {
   return (
@@ -19,6 +21,9 @@ const App = () => {
             </div>
           </div>
         </div>
+        <Navbar />
+        <DocumentPage />
+        <TextEditor />
       </div>
     </div>
   );
