@@ -11,23 +11,43 @@ const EditorWidgets = ({ boldHandler, italicHandler, underlineHandler }) => {
     <div className="widgets flex justify-between pr-12 pl-12 mt-10 mb-5">
       <div className="widget-left flex ">
         <div
-          className="icon-wrapper flex items-center mr-12 text-slate-500"
+          className="icon-wrapper flex items-center mr-12 text-slate-500 cursor-pointer"
           onClick={() => {
             boldHandler();
           }}
         >
           <FormatBoldIcon fontSize="medium" />
         </div>
-        <div className="icon-wrapper flex items-center mr-12 text-slate-500">
+        <div
+          className="icon-wrapper flex items-center mr-12 cursor-pointer"
+          onClick={() => {
+            italicHandler();
+          }}
+        >
           <FormatItalicIcon fontSize="medium" />
         </div>
-        <div className="icon-wrapper flex items-center mr-12 text-slate-500">
+        <div
+          className="icon-wrapper flex items-center mr-12 cursor-pointer"
+          onClick={() => {
+            underlineHandler();
+          }}
+        >
           <FormatUnderlinedIcon fontSize="medium" />
         </div>
-        <div className="icon-wrapper flex items-center mr-12 text-slate-500">
+        <div
+          className="icon-wrapper flex items-center mr-12 cursor-pointer"
+          onClick={() => {
+            boldHandler();
+          }}
+        >
           <AddPhotoAlternateIcon fontSize="medium" />
         </div>
-        <div className="icon-wrapper flex items-center mr-12 text-slate-500">
+        <div
+          className="icon-wrapper flex items-center mr-12 cursor-pointer"
+          onClick={() => {
+            boldHandler();
+          }}
+        >
           <TableViewIcon fontSize="medium" />
         </div>
       </div>
