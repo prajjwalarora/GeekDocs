@@ -44,6 +44,7 @@ const SingUp = () => {
         )
         .then((res) => {
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userId", res.data.user._id);
           navigate("/docs");
         })
         .catch((err) => {

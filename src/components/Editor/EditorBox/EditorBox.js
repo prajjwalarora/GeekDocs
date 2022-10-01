@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { createEditor, Editor, Text, Transforms } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import EditorWidgets from "../EditorWidgets/EditorWidgets";
@@ -13,6 +13,9 @@ const EditorBox = ({ socket }) => {
       children: [{ text: "A line of text in a paragraph." }],
     },
   ]);
+  const userId = useMemo(() => {
+    localStorage.getItem("token");
+  });
 
   useEffect(() => {
     if (socket) {
