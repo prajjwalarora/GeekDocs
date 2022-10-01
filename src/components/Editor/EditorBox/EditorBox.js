@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { createEditor, Editor, Text, Transforms } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import EditorWidgets from "../EditorWidgets/EditorWidgets";
+import EditorHeader from "../EditorHeader/EditorHeader";
 import DefaultElement from "./DefaultElement";
 import Leaf from "./Leaf";
 
@@ -11,6 +12,9 @@ const EditorBox = ({ socket }) => {
   const [editor] = useState(() => withReact(createEditor()));
   const [initialValue, setInitialValue] = useState([]);
   const [searchParams] = useSearchParams();
+  const [completeData, setCompleteData] = useState({
+    title: "Document",
+  });
   const [users, setUsers] = useState([]);
   const userId = useMemo(() => {
     localStorage.getItem("userId");
@@ -46,7 +50,7 @@ const EditorBox = ({ socket }) => {
         )
         .then((res) => {
           console.log(res);
-          console.log(JSON.parse(res.data.data.data));
+          setCompleteData(res.data.data);
           editor.children = JSON.parse(res.data.data.data);
           editor.onChange();
         })
@@ -131,7 +135,7 @@ const EditorBox = ({ socket }) => {
   }
   return (
     <>
-      <div></div>
+      <EditorHeader header={completeData.title} />
       <EditorWidgets
         boldHandler={boldHandler}
         italicHandler={italicHandler}
